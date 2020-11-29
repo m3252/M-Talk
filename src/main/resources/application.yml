@@ -1,0 +1,26 @@
+spring:
+
+  datasource:
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+    url: ${JDBC_DATABASE_URL:jdbc:h2:tcp://localhost/~/talk}
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+    open-in-view: false
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+        jpa:
+          default_batch_fetch_size: 10
+        jdbc:
+          lob:
+            non_contextual_creation: true
+          id:
+            new_generator_mappings: true
+
+springdoc:
+  pathsToMatch: /api/**
