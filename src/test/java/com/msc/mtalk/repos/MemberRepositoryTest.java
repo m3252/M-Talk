@@ -1,12 +1,12 @@
-package com.msc.mtalk.repository;
+package com.msc.mtalk.repos;
 
 import com.msc.mtalk.domain.Member;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import javax.persistence.EntityManager;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -25,7 +25,7 @@ class MemberRepositoryTest {
                 .id("TEST")
                 .status("1")
                 .birth(LocalDate.now())
-                .contact("01045863362")
+                .contactNumber("01045863362")
                 .email("m3252@naveer.com")
                 .name("문승찬")
                 .build());
@@ -39,13 +39,19 @@ class MemberRepositoryTest {
         System.out.println(member.getLastUpdated());
         assertThat(member.getDateCreated()).isNotNull();
         assertThat(member.getLastUpdated()).isNotNull();
+    }
 
-        member.update("수정", "1");
-
+    @Test
+    void 업데이트(){
+        List<Member> members = memberRepository.findAll();
+        Member member = members.get(0);
+        member.update("name", "01045863362", LocalDate.now(), "1");
+        memberRepository.save(member);
 
         System.out.println(member.getDateCreated());
         System.out.println(member.getLastUpdated());
         assertThat(member.getDateCreated()).isNotNull();
         assertThat(member.getLastUpdated()).isNotNull();
+
     }
 }

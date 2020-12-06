@@ -35,30 +35,32 @@ public class Member extends BaseEntity {
     private String statusMessage;
 
     @Column(nullable = false, unique = true, length = 30)
-    private String contact;
+    private String contactNumber;
 
     private String profileUrl;
 
     private LocalDate birth;
 
-    @Column(length = 1, name = "user_status")
+    @Column(length = 1, name = "member_status")
     private String status;
 
     @OneToMany(mappedBy = "member")
     private List<FriendRelation> friends = Collections.emptyList();
 
     @Builder
-    public Member(String id, String email, String name, String contact, LocalDate birth, String status) {
+    public Member(String id, String email, String name, String contactNumber, LocalDate birth, String status) {
         this.id = id;
         this.email = email;
         this.name = name;
-        this.contact = contact;
+        this.contactNumber = contactNumber;
         this.birth = birth;
         this.status = status;
     }
 
-    public void update(String name, String status) {
+    public void update(String name, String contactNumber, LocalDate birth, String status) {
         this.name = name;
+        this.contactNumber = contactNumber;
+        this.birth = birth;
         this.status = status;
     }
 }
