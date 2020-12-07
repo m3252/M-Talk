@@ -1,7 +1,7 @@
 package com.msc.mtalk.service;
 
 import com.msc.mtalk.domain.Member;
-import com.msc.mtalk.exception.MemberNotFoundException;
+import com.msc.mtalk.error.MemberNotFoundException;
 import com.msc.mtalk.model.MemberDTO;
 import com.msc.mtalk.repos.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;

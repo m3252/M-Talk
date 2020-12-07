@@ -1,6 +1,4 @@
-package com.msc.mtalk.exception;
-
-import java.util.function.Supplier;
+package com.msc.mtalk.error;
 
 public class MemberNotFoundException extends RuntimeException {
 
