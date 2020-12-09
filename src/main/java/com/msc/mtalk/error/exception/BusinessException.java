@@ -3,6 +3,7 @@ package com.msc.mtalk.error.exception;
 public class BusinessException extends RuntimeException{
 
     private static final long serialVersionUID = -6990300807683931279L;
+    
     private ErrorCode errorCode;
 
     public BusinessException(String message, ErrorCode errorCode) {
