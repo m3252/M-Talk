@@ -6,8 +6,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
-@EntityScan(basePackages = {"com.msc.mtalk.domain"})
-@EnableJpaRepositories(basePackages = {"com.msc.mtalk.repos"})
+@EntityScan(basePackages = {"com.msc.mtalk.entity"})
+@EnableJpaRepositories(basePackages = {"com.msc.mtalk.domain.member"})
 @EnableTransactionManagement
 public class DomainConfig {
 }

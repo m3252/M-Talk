@@ -1,14 +1,21 @@
-spring:
+server:
+  port: 8080
 
+spring:
   datasource:
-    driver-class-name: org.h2.Driver
+#    driver-class-name: org.h2.Driver
+#    username: sa
+#    password:
+#    url: ${JDBC_DATABASE_URL:jdbc:h2:tcp://localhost/~/talk}
+    driver-class-name: com.mysql.cj.jdbc.Driver
     username: sa
-    password:
-    url: ${JDBC_DATABASE_URL:jdbc:h2:tcp://localhost/~/talk}
+    password: password
+    url: ${JDBC_DATABASE_URL:jdbc:mysql://mysql-member:3306/member}
+
 
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     open-in-view: false
     properties:
       hibernate:
