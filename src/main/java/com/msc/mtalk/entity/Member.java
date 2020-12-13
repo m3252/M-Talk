@@ -48,13 +48,12 @@ public class Member extends BaseEntity {
     private List<FriendRelation> friends = Collections.emptyList();
 
     @Builder
-    public Member(String id, String email, String name, String contactNumber, LocalDate birth, String status) {
+    public Member(String id, String email, String name, String contactNumber, LocalDate birth) {
         this.id = id;
         this.email = email;
         this.name = name;
         this.contactNumber = contactNumber;
         this.birth = birth;
-        this.status = status;
     }
 
     public void update(String name, String contactNumber, LocalDate birth, String status) {

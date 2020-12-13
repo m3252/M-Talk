@@ -7,5 +7,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface MemberRepository extends JpaRepository<Member, Long> {
 
+    boolean checkEmail(String email);
+
+    boolean checkId(String id);
+
 
 }

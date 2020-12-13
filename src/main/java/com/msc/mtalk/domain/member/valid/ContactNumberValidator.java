@@ -15,5 +15,4 @@ public class ContactNumberValidator implements ConstraintValidator<ContactNumber
         return Objects.nonNull(value) && value.matches("[0-9-]+")
                 && ((value.length() >= 12) && (value.length() <= 13));
     }
-
 }
