@@ -1,0 +1,19 @@
+GET localhost:8080/api/members/check/email/m3252@asdsadas
+Content-Type: application/json
+
+###
+GET localhost:8080/api/members/check/email/m3252@naver.com
+Content-Type: application/json
+
+###
+POST localhost:8080/api/members
+Content-Type: application/json
+
+{
+  "id" : "123",
+  "email" : ".com",
+  "name": "문승찬",
+  "contactNumber" : "01045863362",
+  "password": "1234",
+  "birth": "1991-03-19"
+}

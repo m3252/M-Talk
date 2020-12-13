@@ -25,11 +25,11 @@ public class MemberService {
     }
 
     private boolean checkDuplicateEmail(final String email){
-        boolean is = memberRepository.checkEmail(email);
-        if(!is){
+        boolean is = memberRepository.existsByEmail(email);
+        if(is){
             throw new DuplicationException(email ,ErrorCode.EMAIL_DUPLICATION);
         }
-        return memberRepository.checkEmail(email);
+        return false;
     }
 
 
@@ -38,13 +38,14 @@ public class MemberService {
     }
 
     private boolean checkDuplicateId(final String id){
-        boolean is = memberRepository.checkId(id);
-        if(!is){
+        boolean is = memberRepository.existsById(id);
+        if(is){
             throw new DuplicationException(id, ErrorCode.ID_DUPLICATION);
         }
-        return memberRepository.checkId(id);
+        return false;
     }
 
+    //TODO
     private Member mapToEntity(MemberCreateRequest memberCreateRequest){
         return Member.builder()
                 .contactNumber(memberCreateRequest.getContactNumber())
