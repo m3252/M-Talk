@@ -70,8 +70,7 @@ class MemberServiceTest extends CommonServiceTest {
 
         // then
         assertThatThrownBy(() -> memberService.create(member))
-                .isInstanceOf(DuplicateException.class)
-                .hasMessage(member.getEmail());
+                .isInstanceOf(DuplicateException.class);
     }
 
     @Test
@@ -83,8 +82,7 @@ class MemberServiceTest extends CommonServiceTest {
 
         // then
         assertThatThrownBy(() -> memberService.create(member))
-                .isInstanceOf(DuplicateException.class)
-                .hasMessage(member.getId());
+                .isInstanceOf(DuplicateException.class);
     }
 
 }
