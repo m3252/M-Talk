@@ -1,11 +1,9 @@
 package com.msc.mtalk.domain.member;
 
-import com.msc.mtalk.IntegrationTest;
+import com.msc.mtalk.domain.common.CommonControllerTest;
 import com.msc.mtalk.domain.member.dto.MemberCreateRequest;
 import com.msc.mtalk.entity.Member;
-import org.junit.Ignore;
 import org.junit.jupiter.api.Test;;
-import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
@@ -23,7 +21,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 @Transactional
-class MemberControllerTest extends IntegrationTest {
+class MemberControllerTest extends CommonControllerTest {
 
     @Test
     public void 회원가입_성공() throws Exception {

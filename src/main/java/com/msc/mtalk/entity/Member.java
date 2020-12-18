@@ -4,6 +4,7 @@ import com.msc.mtalk.entity.base.BaseEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -16,6 +17,7 @@ import static lombok.AccessLevel.PROTECTED;
 @Getter
 @Entity
 @NoArgsConstructor(access = PROTECTED)
+@ToString(of = {"no", "id", "email", "name", "contactNumber", "profileUrl", "birth", "password"})
 public class Member extends BaseEntity {
 
     @Id
@@ -28,6 +30,9 @@ public class Member extends BaseEntity {
 
     @Column(nullable = false, unique = true)
     private String email;
+
+    @Column(nullable = false)
+    private String password;
 
     @Column(nullable = false)
     private String name;
@@ -48,18 +53,20 @@ public class Member extends BaseEntity {
     private List<FriendRelation> friends = Collections.emptyList();
 
     @Builder
-    public Member(String id, String email, String name, String contactNumber, LocalDate birth) {
+    public Member(String id, String email, String name, String contactNumber, LocalDate birth, String password) {
         this.id = id;
         this.email = email;
         this.name = name;
         this.contactNumber = contactNumber;
         this.birth = birth;
+        this.password = password;
     }
 
-    public void update(String name, String contactNumber, LocalDate birth, String status) {
+    public void update(String name, String contactNumber, LocalDate birth, String status, String password) {
         this.name = name;
         this.contactNumber = contactNumber;
         this.birth = birth;
         this.status = status;
+        this.password = password;
     }
 }

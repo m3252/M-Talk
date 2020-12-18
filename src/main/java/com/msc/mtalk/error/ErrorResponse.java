@@ -17,14 +17,14 @@ import static lombok.AccessLevel.PROTECTED;
 @NoArgsConstructor(access = PROTECTED)
 public class ErrorResponse {
 
-    private OffsetDateTime occurrenceTime;
+    private OffsetDateTime timestamp;
     private String message;
     private int status;
     private List<FieldError> errors;
     private String code;
 
     private ErrorResponse(final ErrorCode code, final List<FieldError> errors) {
-        this.occurrenceTime = OffsetDateTime.now();
+        this.timestamp = OffsetDateTime.now();
         this.message = code.getMessage();
         this.status = code.getStatus();
         this.errors = errors;
@@ -32,6 +32,7 @@ public class ErrorResponse {
     }
 
     private ErrorResponse(final ErrorCode code) {
+        this.timestamp = OffsetDateTime.now();
         this.message = code.getMessage();
         this.status = code.getStatus();
         this.code = code.getCode();

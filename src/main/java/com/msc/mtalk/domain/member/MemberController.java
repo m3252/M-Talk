@@ -1,6 +1,7 @@
 package com.msc.mtalk.domain.member;
 
 import com.msc.mtalk.domain.member.dto.MemberCreateRequest;
+import com.msc.mtalk.entity.Member;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -18,28 +19,38 @@ public class MemberController {
 
     @PostMapping("")
     public ResponseEntity<?> createMember(@RequestBody @Valid final MemberCreateRequest memberCreateRequest) {
-        Long createNo = memberService.create(memberCreateRequest);
+        Long createNo = memberService.create(mapToEntity(memberCreateRequest));
         return ResponseEntity.status(HttpStatus.OK).body(createNo);
     }
 
     @GetMapping("/check/email/{email}")
     public ResponseEntity<?> checkEmail(@PathVariable("email") String email) {
-        boolean check = memberService.checkEmail(email);
+        memberService.checkEmail(email);
         return ResponseEntity.status(HttpStatus.OK).body("ok");
     }
 
     @GetMapping("/check/id/{id}")
     public ResponseEntity<?> checkId(@PathVariable("id") String id) {
-        boolean check = memberService.checkId(id);
+        memberService.checkId(id);
         return ResponseEntity.status(HttpStatus.OK).body("ok");
     }
 
-//    @PutMapping("{memberNo}")
+    //    @PutMapping("{memberNo}")
 //    public ResponseEntity<?> updateMember(@PathVariable final Long memberNo, @RequestBody @Valid final MemberCreateRequest memberCreateRequest) {
 //        memberService.update(memberNo, memberCreateRequest);
 //        return ResponseEntity.status(HttpStatus.OK).body("");
 //    }
-
+//TODO
+    private Member mapToEntity(MemberCreateRequest memberCreateRequest) {
+        return Member.builder()
+                .contactNumber(memberCreateRequest.getContactNumber())
+                .name(memberCreateRequest.getName())
+                .birth(memberCreateRequest.getBirth())
+                .email(memberCreateRequest.getEmail())
+                .id(memberCreateRequest.getId())
+                .password(memberCreateRequest.getPassword())
+                .build();
+    }
 
 
 }
