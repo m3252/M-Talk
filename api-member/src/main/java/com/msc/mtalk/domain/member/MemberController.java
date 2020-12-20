@@ -40,7 +40,7 @@ public class MemberController {
 //        memberService.update(memberNo, memberCreateRequest);
 //        return ResponseEntity.status(HttpStatus.OK).body("");
 //    }
-//TODO
+
     private Member mapToEntity(MemberCreateRequest memberCreateRequest) {
         return Member.builder()
                 .contactNumber(memberCreateRequest.getContactNumber())

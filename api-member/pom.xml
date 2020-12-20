@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.msc</groupId>
-    <artifactId>m-talk</artifactId>
+    <artifactId>api-member</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>m-talk</name>
+    <name>api-member</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
