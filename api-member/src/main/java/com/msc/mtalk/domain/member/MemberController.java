@@ -8,10 +8,12 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping(value = "/api/members", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/members", produces = MediaType.APPLICATION_JSON_VALUE)
 @RequiredArgsConstructor
 public class MemberController {
 
@@ -24,7 +26,10 @@ public class MemberController {
     }
 
     @GetMapping("/check/email/{email}")
-    public ResponseEntity<?> checkEmail(@PathVariable("email") String email) {
+    public ResponseEntity<?> checkEmail(@PathVariable("email") String email, HttpServletRequest req, HttpServletResponse res) {
+        if (req.getHeader("Test") != null) {
+            res.addHeader("Test", req.getHeader("Test"));
+        }
         memberService.checkEmail(email);
         return ResponseEntity.status(HttpStatus.OK).body("ok");
     }
@@ -32,6 +37,14 @@ public class MemberController {
     @GetMapping("/check/id/{id}")
     public ResponseEntity<?> checkId(@PathVariable("id") String id) {
         memberService.checkId(id);
+        return ResponseEntity.status(HttpStatus.OK).body("ok");
+    }
+
+    @GetMapping("/test")
+    public ResponseEntity<?> test(HttpServletRequest req, HttpServletResponse res) {
+        if (req.getHeader("Test") != null) {
+            res.addHeader("Test", req.getHeader("Test"));
+        }
         return ResponseEntity.status(HttpStatus.OK).body("ok");
     }
 

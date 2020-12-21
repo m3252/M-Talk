@@ -1,12 +1,14 @@
+spring:
+  application:
+    name: api-gateway
 server:
   port: ${PORT:8080}
 
 zuul:
-  sensitiveHeaders: Cookie, set-Cookie
   routes:
     api-member:
       path: /api-member/**
-      url: http://localhost:8081/api-member
+      url: http://localhost:8081
     api-chat:
       path: /api-chat/**
-      url: http://localhost:8082/api-chat
+      url: http://localhost:8082
