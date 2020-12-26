@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import javax.persistence.EntityNotFoundException;
 import java.time.LocalDate;
 
+import static com.msc.mtalk.domain.member.MemberHelper.mapToEntity;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class MemberRepositoryTest extends InjectRepositoryTest {
@@ -40,15 +41,12 @@ class MemberRepositoryTest extends InjectRepositoryTest {
 
         // when
         memberRepository.save(member);
-
         em.flush();
-
-        Member memberFindById = memberRepository.findById(member.getNo()).orElseThrow(EntityNotFoundException::new);
+        Member memberFindById = memberRepository.findById(member.getSq()).orElseThrow(EntityNotFoundException::new);
 
         // then
         assertThat(memberFindById).isEqualTo(member).isSameAs(member);
-
-        assertThat(memberFindById.getNo()).isNotZero();
+        assertThat(memberFindById.getSq()).isNotZero();
         assertThat(memberFindById.getId()).isEqualTo(member.getId());
         assertThat(memberFindById.getEmail()).isEqualTo(member.getEmail());
         assertThat(memberFindById.getPassword()).isEqualTo(member.getPassword());
@@ -56,16 +54,5 @@ class MemberRepositoryTest extends InjectRepositoryTest {
         assertThat(memberFindById.getBirth()).isEqualTo(member.getBirth());
         assertThat(memberFindById.getDateCreated()).isNotNull();
         assertThat(memberFindById.getLastUpdated()).isNotNull();
-    }
-
-    private Member mapToEntity(MemberCreateRequest memberCreateRequest){
-        return Member.builder()
-                .contactNumber(memberCreateRequest.getContactNumber())
-                .name(memberCreateRequest.getName())
-                .birth(memberCreateRequest.getBirth())
-                .email(memberCreateRequest.getEmail())
-                .id(memberCreateRequest.getId())
-                .password(memberCreateRequest.getPassword())
-                .build();
     }
 }

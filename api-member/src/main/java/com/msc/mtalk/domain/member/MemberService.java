@@ -4,6 +4,7 @@ import com.msc.mtalk.entity.Member;
 import com.msc.mtalk.error.exception.DuplicateException;
 import com.msc.mtalk.error.exception.ErrorCode;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -12,11 +13,13 @@ public class MemberService {
 
     private final MemberRepository memberRepository;
 
+    // private final ModelMapper modelMapper;
+
     public Long create(final Member member) {
         checkEmail(member.getEmail());
         checkDuplicateId(member.getId());
         memberRepository.save(member);
-        return member.getNo();
+        return member.getSq();
     }
 
     public void checkEmail(final String email) {

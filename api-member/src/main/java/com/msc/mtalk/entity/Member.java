@@ -17,13 +17,13 @@ import static lombok.AccessLevel.PROTECTED;
 @Getter
 @Entity
 @NoArgsConstructor(access = PROTECTED)
-@ToString(of = {"no", "id", "email", "name", "contactNumber", "profileUrl", "birth", "password"})
+@ToString(of = {"sq", "id", "email", "name", "contactNumber", "profileUrl", "birth", "password"})
 public class Member extends BaseEntity {
 
     @Id
-    @Column(nullable = false, name = "member_no")
+    @Column(nullable = false, name = "member_sq")
     @GeneratedValue(strategy = AUTO)
-    private Long no;
+    private Long sq;
 
     @Column(nullable = false, unique = true)
     private String id;

@@ -17,16 +17,16 @@ import static lombok.AccessLevel.PROTECTED;
 public class FriendRelation extends BaseEntity {
 
     @Id
-    @Column(nullable = false, name = "friend_relation_no")
+    @Column(nullable = false, name = "friend_relation_sq")
     @GeneratedValue(strategy = AUTO)
-    private Long no;
+    private Long sq;
 
     @ManyToOne(fetch = LAZY)
-    @JoinColumn(name = "member_no")
+    @JoinColumn(name = "member_sq")
     private Member member;
 
     @ManyToOne(fetch = LAZY)
-    @JoinColumn(name = "friend_no")
+    @JoinColumn(name = "friend_sq")
     private Member friend;
 
     private String friend_nickname;

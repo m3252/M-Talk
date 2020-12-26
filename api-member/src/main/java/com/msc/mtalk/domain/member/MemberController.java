@@ -22,8 +22,8 @@ public class MemberController {
 
     @PostMapping("")
     public ResponseEntity<CreateResponse> createMember(@RequestBody @Valid final MemberCreateRequest memberCreateRequest) {
-        Long createNo = memberService.create(mapToEntity(memberCreateRequest));
-        return ResponseEntity.status(HttpStatus.OK).body(new CreateResponse(createNo));
+        Long createSq = memberService.create(mapToEntity(memberCreateRequest));
+        return ResponseEntity.status(HttpStatus.OK).body(new CreateResponse(createSq));
     }
 
     @GetMapping("/check/email/{email}")

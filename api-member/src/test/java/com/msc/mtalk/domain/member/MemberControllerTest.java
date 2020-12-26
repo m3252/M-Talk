@@ -16,6 +16,7 @@ import java.time.LocalDate;
 
 import static com.msc.mtalk.domain.docs.ApiDocumentUtils.getDocumentRequest;
 import static com.msc.mtalk.domain.docs.ApiDocumentUtils.getDocumentResponse;
+import static com.msc.mtalk.domain.member.MemberHelper.mapToEntity;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.*;
@@ -23,6 +24,7 @@ import static org.springframework.restdocs.payload.JsonFieldType.NUMBER;
 import static org.springframework.restdocs.payload.PayloadDocumentation.*;
 import static org.springframework.restdocs.request.RequestDocumentation.parameterWithName;
 import static org.springframework.restdocs.request.RequestDocumentation.pathParameters;
+import static org.springframework.restdocs.snippet.Attributes.key;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -53,23 +55,23 @@ class MemberControllerTest extends InjectControllerTest {
         // when
         ResultActions result = mvc.perform(
                 post("/members")
-                        .content(objectMapper.writeValueAsString(member))
+                        .content(objectMapper.writeValueAsString(dto))
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON)
         );
 
+        //then
         result.andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andDo(document("members/member-create", // (4)
                         getDocumentRequest(),
                         getDocumentResponse(),
                         requestFields(
                                 fieldWithPath("id").type(JsonFieldType.STRING).description("아이디"),
                                 fieldWithPath("name").type(JsonFieldType.STRING).description("이름"),
-                                fieldWithPath("birth").type(JsonFieldType.STRING).description("생년월일"),
+                                fieldWithPath("birth").type(JsonFieldType.STRING).attributes(key("format").value("yyyy-MM-dd")).description("생년월일"),
                                 fieldWithPath("email").type(JsonFieldType.STRING).description("이메일"),
                                 fieldWithPath("password").type(JsonFieldType.STRING).description("비밀번호"),
-                                fieldWithPath("contactNumber").type(JsonFieldType.STRING).description("연락처")
+                                fieldWithPath("contactNumber").type(JsonFieldType.STRING).attributes(key("format").value("01012345678")).description("핸드폰 번호").optional()
                         ),
                         responseFields(
                                 fieldWithPath("sq").type(NUMBER).description("회원 일련번호")
@@ -77,16 +79,7 @@ class MemberControllerTest extends InjectControllerTest {
                 );
     }
 
-    private Member mapToEntity(MemberCreateRequest memberCreateRequest) {
-        return Member.builder()
-                .contactNumber(memberCreateRequest.getContactNumber())
-                .name(memberCreateRequest.getName())
-                .birth(memberCreateRequest.getBirth())
-                .email(memberCreateRequest.getEmail())
-                .id(memberCreateRequest.getId())
-                .password(memberCreateRequest.getPassword())
-                .build();
-    }
+
 
     @Test
     @DisplayName("이메일 사용가능 여부")

@@ -16,15 +16,15 @@ import static lombok.AccessLevel.PROTECTED;
 public class Chatroom extends BaseEntity {
 
     @Id
-    @Column(nullable = false, name = "chatroom_no")
+    @Column(nullable = false, name = "chatroom_sq")
     @GeneratedValue(strategy = AUTO)
-    private Long no;
+    private Long sq;
 
     @Column(length = 1, nullable = false)
     private String isDelete;
 
     @Builder
-    public Chatroom(Long no, String isDelete) {
+    public Chatroom(Long sq, String isDelete) {
         this.isDelete = isDelete;
     }
 }

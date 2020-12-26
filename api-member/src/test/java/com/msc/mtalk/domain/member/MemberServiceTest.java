@@ -59,7 +59,7 @@ class MemberServiceTest extends InjectServiceTest {
     }
 
     @Test
-    @DisplayName("회원가입 이메일 중복")
+    @DisplayName("이메일 중복")
     void memberCreateDuplicateEmail() {
         // given
         Member member = memberCreator.nextObject(Member.class);
@@ -68,17 +68,23 @@ class MemberServiceTest extends InjectServiceTest {
         // then
         assertThatThrownBy(() -> memberService.create(member))
                 .isInstanceOf(DuplicateException.class);
+
+        assertThatThrownBy(() -> memberService.checkEmail(member.getEmail()))
+                .isInstanceOf(DuplicateException.class);
     }
 
     @Test
-    @DisplayName("회원가입 아이디 중복")
+    @DisplayName("아이디 중복")
     void memberCreateDuplicateId() {
         // given
         Member member = memberCreator.nextObject(Member.class);
-        given(memberRepository.existsByEmail(member.getEmail())).willReturn(true);
+        given(memberRepository.existsById(member.getId())).willReturn(true);
 
         // then
         assertThatThrownBy(() -> memberService.create(member))
+                .isInstanceOf(DuplicateException.class);
+
+        assertThatThrownBy(() -> memberService.checkId(member.getId()))
                 .isInstanceOf(DuplicateException.class);
     }
 

@@ -3,39 +3,91 @@ ifndef::snippets[]
 endif::[]
 :doctype: member
 :icons: font
-:source-highlighter: highlightjs
+:source-highlighter: highlights
 :toc: left
 :toclevels: 4
 :sectlinks:
 :site-url: /build/asciidoc/html5/
 
 
-== Request
-
-=== [Request URL]
+== 회원가입
+=== Request
+==== [Request URL]
 ....
-GET /user/{userId}
-Content-Type: application/json;charset=UTF-8
+POST http://localhost:8080/api-member/members
+Content-Type: application/json
 ....
 
-=== [curl Request]
-include::{snippets}/member-create/curl-request.adoc[]
+==== [curl Request]
+include::{snippets}/members/member-create/curl-request.adoc[]
 
-=== [Request Path Parameters]
+==== [Request Path Parameters]
 
-include::{snippets}/member-create/request-fields.adoc[]
+include::{snippets}/members/member-create/request-fields.adoc[]
 
-=== [Request HTTP Example]
+==== [Request HTTP Example]
 
-include::{snippets}/member-create/http-request.adoc[]
+include::{snippets}/members/member-create/http-request.adoc[]
 
-== Response
+=== Response
 
 
-=== [Response Fields]
+==== [Response Fields]
 
-include::{snippets}/member-create/response-fields.adoc[]
+include::{snippets}/members/member-create/response-fields.adoc[]
 
-=== [Response HTTP Example]
+===== [Response HTTP Example]
 
-include::{snippets}/member-create/http-response.adoc[]
+include::{snippets}/members/member-create/http-response.adoc[]
+
+
+== 중복 아이디 확인
+=== Request
+==== [Request URL]
+....
+GET http://localhost:8080/api-member/members/check/id/{id}
+....
+
+==== [curl Request]
+include::{snippets}/members/check-id/curl-request.adoc[]
+
+==== [Request HTTP Example]
+
+include::{snippets}/members/check-id/http-request.adoc[]
+
+=== Response
+
+
+==== [Response Fields]
+
+include::{snippets}/members/check-id/response-fields.adoc[]
+
+===== [Response HTTP Example]
+
+include::{snippets}/members/check-id/http-response.adoc[]
+
+
+== 중복 이메일 확인
+=== Request
+==== [Request URL]
+....
+GET http://localhost:8080/api-member/members/check/email/{email}
+....
+
+==== [curl Request]
+include::{snippets}/members/check-email/curl-request.adoc[]
+
+==== [Request HTTP Example]
+
+include::{snippets}/members/check-email/http-request.adoc[]
+
+=== Response
+
+
+==== [Response Fields]
+
+include::{snippets}/members/check-email/response-fields.adoc[]
+
+===== [Response HTTP Example]
+
+include::{snippets}/members/check-email/http-response.adoc[]

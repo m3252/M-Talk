@@ -17,16 +17,16 @@ import static lombok.AccessLevel.PROTECTED;
 public class Chat extends BaseEntity {
 
     @Id
-    @Column(nullable = false, name = "chat_no")
+    @Column(nullable = false, name = "chat_sq")
     @GeneratedValue(strategy = AUTO)
-    private Long no;
+    private Long sq;
 
     @ManyToOne(fetch = LAZY)
-    @JoinColumn(name = "chatroom_no", nullable = false)
+    @JoinColumn(name = "chatroom_sq", nullable = false)
     private Chatroom chatroom;
 
     @ManyToOne(fetch = LAZY)
-    @JoinColumn(name = "member_no", nullable = false)
+    @JoinColumn(name = "member_sq", nullable = false)
     private Member member;
 
     @Column(length = 1000, nullable = false)
