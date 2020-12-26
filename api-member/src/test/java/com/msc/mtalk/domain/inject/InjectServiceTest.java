@@ -1,9 +1,9 @@
-package com.msc.mtalk.domain.common;
+package com.msc.mtalk.domain.inject;
 
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
-public abstract class CommonServiceTest {
+public abstract class InjectServiceTest {
 
 }

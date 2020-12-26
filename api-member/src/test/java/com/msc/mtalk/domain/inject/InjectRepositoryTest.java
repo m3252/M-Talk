@@ -1,4 +1,4 @@
-package com.msc.mtalk.domain.common;
+package com.msc.mtalk.domain.inject;
 
 import com.msc.mtalk.config.JpaAuditConfig;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Import;
 
 @DataJpaTest
 @Import(JpaAuditConfig.class)
-public abstract class CommonRepositoryTest {
+public abstract class InjectRepositoryTest {
 
     @Autowired
     protected TestEntityManager em;

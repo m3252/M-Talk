@@ -1,10 +1,8 @@
 package com.msc.mtalk.domain.member;
 
-import com.msc.mtalk.domain.common.CommonServiceTest;
-import com.msc.mtalk.domain.member.dto.MemberCreateRequest;
+import com.msc.mtalk.domain.inject.InjectServiceTest;
 import com.msc.mtalk.entity.Member;
 import com.msc.mtalk.error.exception.DuplicateException;
-import com.msc.mtalk.error.exception.ErrorCode;
 import io.github.benas.randombeans.EnhancedRandomBuilder;
 import io.github.benas.randombeans.api.EnhancedRandom;
 import org.junit.jupiter.api.BeforeAll;
@@ -16,12 +14,11 @@ import org.mockito.Mock;
 import java.time.LocalDate;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.then;
 import static org.mockito.Mockito.times;
 
-class MemberServiceTest extends CommonServiceTest {
+class MemberServiceTest extends InjectServiceTest {
 
     @InjectMocks
     MemberService memberService;

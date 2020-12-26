@@ -2,6 +2,7 @@ package com.msc.mtalk.domain.member;
 
 import com.msc.mtalk.domain.member.dto.MemberCreateRequest;
 import com.msc.mtalk.entity.Member;
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -20,24 +21,21 @@ public class MemberController {
     private final MemberService memberService;
 
     @PostMapping("")
-    public ResponseEntity<?> createMember(@RequestBody @Valid final MemberCreateRequest memberCreateRequest) {
+    public ResponseEntity<CreateResponse> createMember(@RequestBody @Valid final MemberCreateRequest memberCreateRequest) {
         Long createNo = memberService.create(mapToEntity(memberCreateRequest));
-        return ResponseEntity.status(HttpStatus.OK).body(createNo);
+        return ResponseEntity.status(HttpStatus.OK).body(new CreateResponse(createNo));
     }
 
     @GetMapping("/check/email/{email}")
-    public ResponseEntity<?> checkEmail(@PathVariable("email") String email, HttpServletRequest req, HttpServletResponse res) {
-        if (req.getHeader("Test") != null) {
-            res.addHeader("Test", req.getHeader("Test"));
-        }
+    public ResponseEntity<CheckResponse> checkEmail(@PathVariable("email") String email, HttpServletRequest req, HttpServletResponse res) {
         memberService.checkEmail(email);
-        return ResponseEntity.status(HttpStatus.OK).body("ok");
+        return ResponseEntity.status(HttpStatus.OK).body(new CheckResponse(true));
     }
 
     @GetMapping("/check/id/{id}")
-    public ResponseEntity<?> checkId(@PathVariable("id") String id) {
+    public ResponseEntity<CheckResponse> checkId(@PathVariable("id") String id) {
         memberService.checkId(id);
-        return ResponseEntity.status(HttpStatus.OK).body("ok");
+        return ResponseEntity.status(HttpStatus.OK).body(new CheckResponse(true));
     }
 
     @GetMapping("/test")
@@ -47,12 +45,6 @@ public class MemberController {
         }
         return ResponseEntity.status(HttpStatus.OK).body("ok");
     }
-
-    //    @PutMapping("{memberNo}")
-//    public ResponseEntity<?> updateMember(@PathVariable final Long memberNo, @RequestBody @Valid final MemberCreateRequest memberCreateRequest) {
-//        memberService.update(memberNo, memberCreateRequest);
-//        return ResponseEntity.status(HttpStatus.OK).body("");
-//    }
 
     private Member mapToEntity(MemberCreateRequest memberCreateRequest) {
         return Member.builder()
@@ -65,5 +57,20 @@ public class MemberController {
                 .build();
     }
 
+    @Data
+    static class CreateResponse {
+        private Long sq;
+        public CreateResponse(Long sq) {
+            this.sq = sq;
+        }
+    }
+
+    @Data
+    static class CheckResponse {
+        private boolean usable;
+        public CheckResponse(boolean usable) {
+            this.usable = usable;
+        }
+    }
 
 }

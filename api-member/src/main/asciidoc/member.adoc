@@ -1,0 +1,41 @@
+ifndef::snippets[]
+:snippets: ../../../build/generated-snippets
+endif::[]
+:doctype: member
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 4
+:sectlinks:
+:site-url: /build/asciidoc/html5/
+
+
+== Request
+
+=== [Request URL]
+....
+GET /user/{userId}
+Content-Type: application/json;charset=UTF-8
+....
+
+=== [curl Request]
+include::{snippets}/member-create/curl-request.adoc[]
+
+=== [Request Path Parameters]
+
+include::{snippets}/member-create/request-fields.adoc[]
+
+=== [Request HTTP Example]
+
+include::{snippets}/member-create/http-request.adoc[]
+
+== Response
+
+
+=== [Response Fields]
+
+include::{snippets}/member-create/response-fields.adoc[]
+
+=== [Response HTTP Example]
+
+include::{snippets}/member-create/http-response.adoc[]

@@ -1,6 +1,6 @@
 package com.msc.mtalk.domain.member;
 
-import com.msc.mtalk.domain.common.CommonRepositoryTest;
+import com.msc.mtalk.domain.inject.InjectRepositoryTest;
 import com.msc.mtalk.domain.member.dto.MemberCreateRequest;
 import com.msc.mtalk.entity.Member;
 import org.junit.jupiter.api.BeforeAll;
@@ -12,9 +12,8 @@ import javax.persistence.EntityNotFoundException;
 import java.time.LocalDate;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
-class MemberRepositoryTest extends CommonRepositoryTest {
+class MemberRepositoryTest extends InjectRepositoryTest {
 
     @Autowired
     MemberRepository memberRepository;

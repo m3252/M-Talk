@@ -100,17 +100,7 @@
             <artifactId>random-beans</artifactId>
             <version>3.9.0</version>
         </dependency>
-        <dependency>
-            <groupId>com.msc</groupId>
-            <artifactId>api-gateway</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.rest-assured</groupId>
-            <artifactId>rest-assured</artifactId>
-            <scope>test</scope>
-        </dependency>
+
         <dependency>
             <groupId>io.rest-assured</groupId>
             <artifactId>rest-assured</artifactId>
@@ -134,7 +124,7 @@
                         </goals>
                         <configuration>
                             <backend>html</backend>
-                            <doctype>book</doctype>
+                            <doctype>talk</doctype>
                         </configuration>
                     </execution>
                 </executions>
