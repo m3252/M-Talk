@@ -13,8 +13,6 @@ public class MemberService {
 
     private final MemberRepository memberRepository;
 
-    // private final ModelMapper modelMapper;
-
     public Long create(final Member member) {
         checkEmail(member.getEmail());
         checkDuplicateId(member.getId());
