@@ -1,14 +1,13 @@
 package com.msc.mtalk.domain.friend;
 
+import com.msc.mtalk.domain.member.MemberController;
+import com.msc.mtalk.domain.member.dto.MemberCreateRequest;
 import com.msc.mtalk.entity.FriendRelation;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -26,10 +25,17 @@ public class FriendController {
 
     private final FriendService friendService;
 
+    @PostMapping("/{friendSq}")
+    public ResponseEntity<CreateResponse> addFriend(@PathVariable("friendSq") Long friendSq) {
+        Long friendRelationSq = friendService.addFriend(friendSq);
+        return ResponseEntity.status(HttpStatus.OK).body(new CreateResponse(friendRelationSq));
+    }
+
     @GetMapping
-    public ResponseEntity<FriendsResponse> friends(HttpServletRequest req, @RequestParam @Valid FriendController.FriendsRequest searchParam) {
+    public ResponseEntity<FriendsResponse> friends(HttpServletRequest req, @RequestParam(required = false) @Valid FriendsRequest searchParam) {
         // TODO redis session 클러스터링 혹은 Spring cloud Security 를 통해 사용자의 PK를 가져온다.
         FriendsResponse friendsResponse = new FriendsResponse();
+        searchParam.setMemberSq(0L);
         friendsResponse.setFriends(friendService.findAll()
                 .stream()
                 .map(this::mapToDTO)
@@ -48,9 +54,17 @@ public class FriendController {
                 .build();
     }
 
-    @Getter
-    static class FriendsRequest {
+    @Data
+    static class CreateResponse {
+        private Long sq;
+        public CreateResponse(Long sq) {
+            this.sq = sq;
+        }
+    }
 
+    @Data
+    static class FriendsRequest {
+        private Long memberSq;
     }
 
     @Data
