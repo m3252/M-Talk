@@ -1,0 +1,12 @@
+{
+  "realm": "M-Talk",
+  "auth-server-url": "http://localhost:9999/auth",
+  "ssl-required": "external",
+  "resource": "test",
+  "credentials": {
+    "secret": "1895c1a2-93df-4ca2-a83d-7a5dfe7c9437"
+  },
+  "confidential-port": 0
+
+
+}
