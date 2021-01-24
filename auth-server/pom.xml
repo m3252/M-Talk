@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.msc.mtalk</groupId>
-    <artifactId>mtalk-OAuth</artifactId>
+    <artifactId>auth-server</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>OAuth</name>
-    <description>인증서버</description>
+    <name>auth</name>
+    <description>Auth Server</description>
     <properties>
         <java.version>11</java.version>
     </properties>
