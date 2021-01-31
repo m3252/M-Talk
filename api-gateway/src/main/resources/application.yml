@@ -6,6 +6,9 @@ server:
 
 zuul:
   routes:
+    oauth:
+      path: /oauth/**
+      url: http://localhost:9090
     api-member:
       path: /api-member/**
       url: http://localhost:8081
@@ -16,7 +19,13 @@ zuul:
     use-separate-thread-pools: true
     thread-pool-key-prefix: zuul-
   ribbon-isolation-strategy: thread
+  sensitiveHeaders: Cookie,Set-Cookie
 
+security:
+  oauth2:
+    resource:
+      jwt:
+        key-value: msc
 
 
 hystrix:
